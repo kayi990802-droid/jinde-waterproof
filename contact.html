@@ -22,6 +22,7 @@
             line-height: 1.6;
         }
 
+        /* 滾動動畫相關 */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -33,14 +34,14 @@
         .logo { font-size: 1.6rem; font-weight: 900; color: var(--primary); text-decoration: none; }
         .logo span { color: var(--accent); }
         .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--primary); font-weight: bold; font-size: 0.95rem; }
-        .btn-call-nav { background: var(--accent); color: white !important; padding: 10px 18px; border-radius: 4px; font-weight: 900; }
+        .nav-links a { text-decoration: none; color: var(--primary); font-weight: bold; font-size: 0.95rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
 
         /* 頁面標題 */
         .page-header {
             background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), 
                         url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=1600') center/cover;
-            padding: 60px 5%; text-align: center; color: white;
+            padding: 80px 5%; text-align: center; color: white;
         }
 
         .section { padding: 60px 5%; max-width: 1200px; margin: 0 auto; }
@@ -55,26 +56,72 @@
         .info-item h4 { margin: 0 0 5px 0; color: var(--primary); }
         .info-item p { margin: 0; color: #64748b; }
 
-        .line-btn-big { background: var(--line-green); color: white; padding: 15px; border-radius: 10px; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: bold; font-size: 1.2rem; margin-top: 20px; transition: 0.3s; }
-        .line-btn-big:hover { background: #05b04a; transform: scale(1.02); }
+        .line-btn-big { background: var(--line-green); color: white; padding: 15px; border-radius: 10px; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: bold; font-size: 1.2rem; margin-top: 20px; transition: 0.3s; border: none; cursor: pointer; }
+        .line-btn-big:hover { background: #05b04a; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(6, 199, 85, 0.3); }
 
         /* 右側表單 */
         .contact-form { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: var(--primary); }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 1rem; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 1rem; font-family: inherit; }
         .form-group textarea { height: 120px; resize: none; }
         .submit-btn { background: var(--primary); color: white; width: 100%; padding: 15px; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .submit-btn:hover { background: var(--accent); }
+        .submit-btn:hover { background: var(--accent); transform: translateY(-2px); }
+
+        /* 彈出視窗成功樣式 */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); display: none; align-items: center;
+            justify-content: center; z-index: 10000; backdrop-filter: blur(5px);
+        }
+        .modal-card {
+            background: white; padding: 40px; border-radius: 20px; text-align: center;
+            max-width: 400px; width: 90%; box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            animation: modalIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes modalIn {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-card i { font-size: 65px; color: #06C755; margin-bottom: 20px; }
+        .modal-card h3 { color: var(--primary); margin: 0 0 10px 0; font-size: 1.6rem; }
+        .modal-card p { color: #64748b; margin-bottom: 25px; font-size: 1.05rem; }
+        .modal-close-btn {
+            background: var(--primary); color: white; border: none; padding: 12px 35px;
+            border-radius: 50px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1rem;
+        }
+        .modal-close-btn:hover { background: var(--accent); transform: scale(1.05); }
+
+        /* 浮動 LINE 按鈕動畫 */
+        .line-float {
+            position: fixed; bottom: 30px; right: 30px;
+            background: var(--line-green); color: white;
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 9999; text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(6, 199, 85, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(6, 199, 85, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(6, 199, 85, 0); }
+        }
 
         @media (max-width: 850px) {
+            .navbar { height: auto; padding: 15px; flex-direction: column; }
             .contact-wrapper { grid-template-columns: 1fr; }
         }
 
-        footer { background: var(--primary); color: white; padding: 50px 5%; text-align: center; }
+        footer { background: var(--primary); color: white; padding: 40px 5%; text-align: center; margin-top: 40px; }
     </style>
 </head>
 <body>
+
+    <a href="https://line.me/ti/p/rqqh-uyZsq" class="line-float" target="_blank">
+        <i class="fab fa-line"></i>
+    </a>
 
     <header class="navbar">
         <a href="index.html" class="logo">錦德<span>防水工程</span></a>
@@ -91,7 +138,7 @@
 
     <section class="page-header">
         <h1 class="reveal">聯絡錦德防水</h1>
-        <p class="reveal">專業技師免費場勘，為您的家開立精準診斷書</p>
+        <p class="reveal">讓專業的來！填寫表單，師傅免費到府場勘</p>
     </section>
 
     <section class="section">
@@ -103,70 +150,72 @@
                     <i class="fas fa-phone-alt"></i>
                     <div>
                         <h4>預約專線</h4>
-                        <p>0912-345-678 (林師傅)</p>
+                        <p><a href="tel:0963696032" style="text-decoration:none; color:inherit; font-weight:bold;">0963-696-032</a></p>
                     </div>
                 </div>
                 <div class="info-item">
                     <i class="fas fa-map-marker-alt"></i>
                     <div>
                         <h4>服務區域</h4>
-                        <p>台中市、彰化縣、南投縣 (全區到府)</p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-clock"></i>
-                    <div>
-                        <h4>服務時間</h4>
-                        <p>週一至週六 08:00 - 18:00 (週日歡迎預約)</p>
+                        <p>台中、彰化、南投 (全區到府)</p>
                     </div>
                 </div>
 
-                <a href="https://line.me/ti/p/您的ID" class="line-btn-big" target="_blank">
-                    <i class="fab fa-line"></i> 加入 LINE 諮詢抓漏
+                <a href="https://line.me/ti/p/rqqh-uyZsq" class="line-btn-big" target="_blank">
+                    <i class="fab fa-line"></i> LINE 線上快速報價
                 </a>
-                <p style="margin-top:15px; font-size:0.9rem; color:#64748b;">* 傳送漏水處照片至 LINE，師傅能提供更精準的初步判斷。</p>
+                <p style="margin-top:15px; font-size:0.9rem; color:#64748b;">* 提示：上傳現場照片至 LINE，估價更精準快速。</p>
             </div>
 
             <div class="contact-form reveal">
-                <form action="#">
+                <form id="contactForm">
+                    <input type="hidden" name="access_key" value="d9e5c0ca-40bd-45d0-a8c5-e802bfc12957">
+                    
                     <div class="form-group">
                         <label>您的姓名</label>
-                        <input type="text" placeholder="例如：林先生 / 吳小姐" required>
+                        <input type="text" name="name" placeholder="如何稱呼您？" required>
                     </div>
                     <div class="form-group">
                         <label>聯絡電話</label>
-                        <input type="tel" placeholder="例如：0912345678" required>
+                        <input type="tel" name="phone" placeholder="例如：0912345678" required>
                     </div>
                     <div class="form-group">
                         <label>施工位置 (區域)</label>
-                        <select required>
-                            <option value="">請選擇縣市區域</option>
-                            <option value="taichung">台中市</option>
-                            <option value="changhua">彰化縣市</option>
-                            <option value="nantou">南投縣市</option>
+                        <select name="location" required>
+                            <option value="">請選擇縣市</option>
+                            <option value="台中市">台中市</option>
+                            <option value="彰化縣市">彰化縣市</option>
+                            <option value="南投縣市">南投縣市</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label>漏水狀況描述</label>
-                        <textarea placeholder="請簡單描述狀況（例如：頂樓滲水、牆壁脫漆、浴室天花板滴水等）"></textarea>
+                        <textarea name="message" placeholder="例如：頂樓滲水、壁癌狀況、浴室天花板滴水等"></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">送出預約資訊</button>
-                    <p style="text-align:center; margin-top:15px; font-size:0.85rem; color:#94a3b8;">送出後，林師傅將於 24 小時內與您聯繫。</p>
+                    
+                    <button type="submit" class="submit-btn" id="submitBtn">確認送出預約</button>
+                    <p id="form-status" style="text-align:center; margin-top:15px; font-size:0.85rem;"></p>
                 </form>
             </div>
 
         </div>
     </section>
 
-    <section class="reveal" style="padding: 0 5% 60px;">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3640.604471569074!2d120.64364831500002!3d24.150000000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693d0fd0c8e31b%3A0x7d0d0f7f3f3f3f3f!2z5Y-w5Lit5biC5pS_5bqc!5e0!3m2!1szh-TW!2stw!4v1620000000000!5m2!1szh-TW!2stw" width="100%" height="350" style="border:0; border-radius:15px; box-shadow:0 10px 20px rgba(0,0,0,0.05);" allowfullscreen="" loading="lazy"></iframe>
-    </section>
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-card">
+            <i class="fas fa-check-circle"></i>
+            <h3>預約已送出！</h3>
+            <p>感謝您的聯絡，錦德防水將盡快由專人與您聯繫。</p>
+            <button class="modal-close-btn" onclick="closeModal()">我知道了</button>
+        </div>
+    </div>
 
     <footer>
-        <p>© 2026 錦德防水工程 | 中部在地首選團隊</p>
+        <p>© 2026 錦德防水工程 | 中部在地防水推薦 | 免費到府估價</p>
     </footer>
 
     <script>
+        // 1. 頁面滾動漸顯動畫
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -177,7 +226,51 @@
             }
         }
         window.addEventListener("scroll", reveal);
-        reveal();
+        window.onload = reveal;
+
+        // 2. 表單處理與彈窗
+        const form = document.getElementById('contactForm');
+        const modal = document.getElementById('successModal');
+
+        function closeModal() {
+            modal.style.display = 'none';
+            form.reset();
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            const btn = document.getElementById('submitBtn');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 正在傳送...';
+            btn.style.pointerEvents = 'none';
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let res = await response.json();
+                if (response.status == 200) {
+                    modal.style.display = 'flex';
+                } else {
+                    alert("送出失敗：" + res.message);
+                }
+            })
+            .catch(error => {
+                alert("網路異常，請稍後再試或直接撥打電話。");
+            })
+            .then(function() {
+                btn.innerHTML = '確認送出預約';
+                btn.style.pointerEvents = 'auto';
+            });
+        });
     </script>
 </body>
 </html>
