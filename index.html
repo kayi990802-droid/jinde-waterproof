@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head
+<head>
     <link rel="icon" href="favicon.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -78,7 +78,12 @@
             padding: 0 6%; position: sticky; top: 0; z-index: 2000;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
-        .logo { font-size: 1.6rem; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: 1px; flex-shrink: 0; }
+        .logo { 
+            display: flex; align-items: center; 
+            font-size: 1.6rem; font-weight: 900; color: var(--primary); 
+            text-decoration: none; letter-spacing: 1px; flex-shrink: 0; 
+        }
+        .logo img { height: 45px; margin-right: 12px; }
         .logo span { color: var(--accent); }
         .nav-links { display: flex; gap: 20px; align-items: center; }
         .nav-links a { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 0.95rem; transition: 0.3s; }
@@ -179,7 +184,10 @@
     </div>
 
     <header class="navbar">
-        <a href="index.html" class="logo">錦德<span>防水工程</span></a>
+        <a href="index.html" class="logo">
+            <img src="favicon.png" alt="錦德Logo">
+            錦德<span>防水工程</span>
+        </a>
         <nav class="nav-links">
             <a href="index.html">首頁 HOME</a>
             <a href="about.html">關於我們 ABOUT</a>
