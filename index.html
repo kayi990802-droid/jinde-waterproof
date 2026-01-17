@@ -51,14 +51,12 @@
             100% { width: clamp(100px, 50%, 200px); }
         }
 
-        /* 呼吸脈衝動畫 */
         @keyframes pulse-gold {
             0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(184, 134, 11, 0.7); }
             70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(184, 134, 11, 0); }
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(184, 134, 11, 0); }
         }
 
-        /* 基礎樣式 */
         * { box-sizing: border-box; scroll-behavior: smooth; }
         body { 
             font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif; 
@@ -66,13 +64,12 @@
             line-height: 1.8; overflow-x: hidden;
         }
 
-        /* 進場浮現動畫 */
         .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.2, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* 導覽列 */
+        /* 導覽列優化 */
         .navbar {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             min-height: 90px; display: flex; align-items: center; justify-content: space-between;
             padding: 0 6%; position: sticky; top: 0; z-index: 2000;
@@ -83,14 +80,16 @@
             font-size: 1.6rem; font-weight: 900; color: var(--primary); 
             text-decoration: none; letter-spacing: 1px; flex-shrink: 0; 
         }
-        .logo img { height: 45px; margin-right: 12px; }
+        /* 確保 Logo 圖片大小適中 */
+        .logo img { height: 55px; width: auto; margin-right: 12px; vertical-align: middle; }
         .logo span { color: var(--accent); }
+        
         .nav-links { display: flex; gap: 20px; align-items: center; }
         .nav-links a { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 0.95rem; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent); }
         
         .btn-call-nav { 
-            background: var(--primary); color: white !important; padding: 10px 20px; border-radius: 4px; 
+            background: var(--primary); color: white !important; padding: 10px 22px; border-radius: 4px; 
             font-weight: 700; border: 2px solid var(--primary); transition: 0.3s; text-decoration: none;
             font-size: 0.9rem;
         }
@@ -126,10 +125,7 @@
         .metric-card span { font-size: 1.2rem; color: var(--accent); font-weight: 900; margin-left: 4px; }
         .metric-card p { margin: 8px 0 0; font-weight: 700; color: var(--text-muted); letter-spacing: 1px; font-size: 0.95rem; }
 
-        /* 內容區塊 */
         .section { padding: 80px 6%; max-width: 1400px; margin: 0 auto; }
-        
-        /* 關於我們 Grid 佈局 */
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
 
         .link-more {
@@ -138,7 +134,7 @@
         }
         .link-more:hover { color: var(--accent); padding-left: 10px; border-bottom-color: var(--primary); }
 
-        /* 實績案例對比 */
+        /* 對比滑動條 */
         .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
         .ba-container { position: relative; width: 100%; height: 350px; overflow: hidden; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
         .ba-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; }
@@ -155,20 +151,16 @@
         }
         .line-float:hover { transform: scale(1.1); }
 
-        /* --- 響應式優化 --- */
         @media (max-width: 992px) {
             .navbar { flex-direction: column; padding: 15px; height: auto; gap: 15px; }
             .nav-links { gap: 15px; flex-wrap: wrap; justify-content: center; }
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
             .ba-grid { grid-template-columns: 1fr; }
         }
-
         @media (max-width: 600px) {
             .hero { height: 75vh; }
             .metric-card { width: 100%; }
-            .section { padding: 60px 20px; }
             .hero-content h1 { font-size: 1.8rem; }
-            .about-grid h2 { font-size: 2.2rem !important; }
             .ba-container { height: 280px; }
         }
     </style>
@@ -193,7 +185,7 @@
             <a href="about.html">關於我們 ABOUT</a>
             <a href="services.html">服務項目 SERVICE</a>
             <a href="cases.html">實績對比 CASES</a>
-            <a href="areas.html" style="color:var(--accent)">服務區域 AREA</a>
+            <a href="areas.html">服務區域 AREA</a>
             <a href="contact.html" class="btn-call-nav">立即預約</a>
         </nav>
     </header>
@@ -208,7 +200,7 @@
 
     <div class="metrics">
         <div class="metric-card reveal">
-            <h3 class="counter-up" data-target="08">0</h3><span>年</span>
+            <h3 class="counter-up" data-target="8">0</h3><span>年</span>
             <p>防水工程經驗</p>
         </div>
         <div class="metric-card reveal">
@@ -281,7 +273,6 @@
     </a>
 
     <script>
-        // 頁面載入動畫
         window.addEventListener('load', function() {
             setTimeout(function() {
                 const loader = document.getElementById('loader');
@@ -292,7 +283,6 @@
         });
         document.body.style.overflow = 'hidden';
 
-        // 數字跑分邏輯
         function animateCounter(el) {
             const target = +el.getAttribute('data-target');
             const duration = 2000;
@@ -307,7 +297,6 @@
             window.requestAnimationFrame(step);
         }
 
-        // 捲動偵測
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
