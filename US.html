@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>預約場勘 | 錦德防水工程 - 科技抓漏專家</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #0F172A; 
+            --accent: #B8860B;  
+            --accent-light: #D4AF37;
+            --bg-light: #F8FAFC;
+            --white: #FFFFFF;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body { 
+            font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif; 
+            margin: 0; background: var(--bg-light); color: var(--text-main); 
+            line-height: 1.8; overflow-x: hidden;
+        }
+
+        /* 導覽列：與全站統一 */
+        .navbar {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            height: 90px; display: flex; align-items: center; justify-content: space-between;
+            padding: 0 6%; position: sticky; top: 0; z-index: 2000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .logo { font-size: 1.8rem; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: 2px; }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 1rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+        .btn-call-nav { background: var(--primary); color: white !important; padding: 12px 24px; border-radius: 4px; font-weight: 700; border: 2px solid var(--primary); }
+
+        /* 聯絡區塊佈局 */
+        .contact-section { padding: 80px 6%; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; }
+
+        /* 左側：品牌資訊 */
+        .contact-info { background: var(--primary); color: white; padding: 50px; border-radius: 8px; }
+        .contact-info h2 { color: var(--accent-light); margin-top: 0; font-size: 2rem; }
+        .info-item { display: flex; align-items: flex-start; margin-bottom: 30px; }
+        .info-item i { font-size: 1.5rem; color: var(--accent); margin-right: 20px; margin-top: 5px; }
+        .info-item p { margin: 0; font-size: 1.1rem; opacity: 0.9; }
+
+        /* 右側：表單卡片 */
+        .form-card { background: white; padding: 50px; border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); }
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; margin-bottom: 10px; font-weight: 700; color: var(--primary); }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 15px; border: 1px solid #E2E8F0; border-radius: 4px; font-size: 1rem; outline: none; transition: 0.3s;
+        }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+        
+        .submit-btn {
+            background: var(--accent); color: white; border: none; padding: 20px;
+            font-size: 1.1rem; font-weight: 800; cursor: pointer; width: 100%;
+            border-radius: 4px; transition: 0.3s;
+        }
+        .submit-btn:hover { background: var(--primary); transform: translateY(-3px); }
+
+        footer { background: var(--primary); color: white; padding: 40px; text-align: center; margin-top: 60px; }
+
+        @media (max-width: 992px) {
+            .contact-section { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="index.html" class="logo">錦德<span>防水工程</span></a>
+        <nav class="nav-links">
+            <a href="index.html">首頁 HOME</a>
+            <a href="about.html">關於我們 ABOUT</a>
+            <a href="services.html">服務項目 SERVICE</a>
+            <a href="cases.html">實績對比 CASES</a>
+            <a href="areas.html">服務區域 AREA</a>
+            <a href="US.html" class="btn-call-nav">立即預約</a>
+        </nav>
+    </header>
+
+    <div style="text-align:center; padding-top: 60px;">
+        <h1 style="font-size: 2.5rem; font-weight: 900; color: var(--primary);">聯絡錦德</h1>
+        <p style="color: var(--text-muted); letter-spacing: 5px;">GET IN TOUCH</p>
+    </div>
+
+    <section class="contact-section">
+        <div class="contact-info">
+            <h2>服務資訊</h2>
+            <div class="info-item">
+                <i class="fas fa-phone-alt"></i>
+                <div>
+                    <p>服務專線</p>
+                    <p style="font-weight: 700; font-size: 1.3rem;">0963-696-032</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                    <p>服務區域</p>
+                    <p>台中、彰化、南投全區服務</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <div>
+                    <p>營業時間</p>
+                    <p>週一至週六 08:00 - 18:00</p>
+                </div>
+            </div>
+            <div style="margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; font-size: 0.9rem; opacity: 0.7;">
+                錦德防水工程<br>
+                專業防水、止漏、壁癌根治
+            </div>
+        </div>
+
+        <div class="form-card">
+            <form action="https://api.web3forms.com/submit" method="POST">
+                
+                <input type="hidden" name="access_key" value="d9e5c0ca-40bd-45d0-a8c5-e802bfc12957">
+                
+                <input type="hidden" name="redirect" value="https://jindewaterproof.com/index.html">
+                
+                <input type="hidden" name="subject" value="【錦德網站】新的場勘預約申請">
+
+                <div class="form-group">
+                    <label>您的姓名 *</label>
+                    <input type="text" name="name" placeholder="例：林先生/小姐" required>
+                </div>
+
+                <div class="form-group">
+                    <label>聯絡電話 *</label>
+                    <input type="tel" name="phone" placeholder="請輸入手機號碼" required>
+                </div>
+
+                <div class="form-group">
+                    <label>施工地點</label>
+                    <select name="location">
+                        <option value="台中市">台中市</option>
+                        <option value="彰化縣市">彰化縣市</option>
+                        <option value="南投縣市">南投縣市</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>問題描述 (選填)</label>
+                    <textarea name="message" rows="4" placeholder="請描述漏水位置，如：頂樓、外牆、浴室..."></textarea>
+                </div>
+
+                <input type="checkbox" name="botcheck" style="display:none">
+
+                <button type="submit" class="submit-btn">送出預約申請</button>
+            </form>
+        </div>
+    </section>
+
+    <div style="height: 400px; background: #eee; margin-top: 40px;">
+        <iframe src="https://www.google.com/maps/embed?pb=您的地圖連結" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+
+    <footer>
+        <p>© 2026 錦德防水工程 | 中彰投科技抓漏專業團隊</p>
+    </footer>
+
+</body>
+</html>

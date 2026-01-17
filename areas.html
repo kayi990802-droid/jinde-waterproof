@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>服務區域 | 錦德防水工程</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0F172A; 
+            --accent: #B8860B;  
+            --accent-light: #D4AF37;
+            --bg-light: #F1F5F9;
+            --white: #FFFFFF;
+        }
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body { 
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif; 
+            margin: 0; background: var(--bg-light); color: #334155; 
+            line-height: 1.6; overflow-x: hidden;
+        }
+
+        /* --- 動畫特效庫 --- */
+        @keyframes pulse-gold {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(184, 134, 11, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(184, 134, 11, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(184, 134, 11, 0); }
+        }
+        @keyframes shake {
+            0% { transform: rotate(0); }
+            25% { transform: rotate(3deg); }
+            50% { transform: rotate(-3deg); }
+            75% { transform: rotate(3deg); }
+            100% { transform: rotate(0); }
+        }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* 導覽列 */
+        .navbar {
+            background: white; min-height: 100px; display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 5%; position: sticky; top: 0; z-index: 2000; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .logo { font-size: 1.6rem; font-weight: 900; color: var(--primary); text-decoration: none; }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+        .nav-links a { text-decoration: none; color: var(--primary); font-weight: bold; margin: 5px 0 5px 20px; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+        .btn-call-nav { background: var(--accent); color: white !important; padding: 10px 22px; border-radius: 50px; }
+        .btn-call-nav:hover { animation: shake 0.5s ease-in-out; background: var(--primary); }
+
+        /* 標題區 */
+        .page-header {
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), 
+                        url('https://images.unsplash.com/photo-1449156001437-3a1661acda22?q=80&w=1600') center/cover;
+            padding: 70px 5%; text-align: center; color: white;
+        }
+
+        .section { padding: 40px 5%; max-width: 1200px; margin: 0 auto; }
+
+        /* 內容容器 */
+        .area-container {
+            display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px;
+            background: white; padding: 45px; border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1); margin-top: -60px;
+        }
+        .area-info h2 { color: var(--primary); margin-bottom: 25px; border-left: 6px solid var(--accent); padding-left: 15px; }
+        .dist-tag { 
+            display: inline-block; background: #f8fafc; padding: 8px 16px; 
+            border-radius: 8px; margin: 5px; font-size: 0.9rem; font-weight: 600;
+            border: 1px solid #e2e8f0; transition: 0.3s;
+        }
+        .dist-tag:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+
+        /* 按鈕動畫 */
+        .btn-call {
+            display: inline-block; background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: white; padding: 20px 45px; border-radius: 50px; text-decoration: none;
+            font-weight: 900; font-size: 1.3rem; margin-top: 20px;
+            animation: pulse-gold 2s infinite; position: relative; overflow: hidden;
+        }
+        .btn-call::after {
+            content: ''; position: absolute; top: -50%; left: -60%; width: 20%; height: 200%;
+            background: rgba(255, 255, 255, 0.3); transform: rotate(30deg); transition: 0.5s;
+        }
+        .btn-call:hover::after { left: 120%; }
+
+        .map-wrapper { border-radius: 15px; overflow: hidden; border: 8px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        iframe { width: 100%; height: 480px; border: 0; }
+
+        /* 數據區跑分樣式 */
+        .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center; margin-top: 50px; }
+        .stat-item { padding: 40px 20px; background: white; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .stat-item i { font-size: 3rem; color: var(--accent); margin-bottom: 15px; }
+        .stat-item h3 { display: inline-block; font-size: 2.8rem; margin: 10px 0; color: var(--primary); font-weight: 900; }
+        .stat-item span { font-size: 1.5rem; font-weight: 900; color: var(--accent); margin-left: 5px; }
+
+        footer { background: var(--primary); color: white; padding: 60px 5%; text-align: center; margin-top: 80px; }
+
+        @media (max-width: 900px) {
+            .navbar { flex-direction: column; height: auto; }
+            .area-container { grid-template-columns: 1fr; margin-top: 20px; }
+            .stat-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="index.html" class="logo">錦德<span>防水工程</span></a>
+        <nav class="nav-links">
+            <a href="index.html">首頁 HOME</a>
+            <a href="about.html">關於我們 ABOUT</a>
+            <a href="services.html">服務項目 SERVICE</a>
+            <a href="cases.html">實績對比 CASES</a>
+            <a href="areas.html" style="color:var(--accent)">服務區域 AREA</a>
+            <a href="contact.html" class="btn-call-nav">立即預約</a>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <h1>專業到府 · 中部全區服務</h1>
+        <p>台中、彰化、南投，免費預約現場勘查估價</p>
+    </section>
+
+    <div class="section">
+        <div class="area-container reveal active">
+            <div class="area-info">
+                <h2>服務據點與範圍</h2>
+                <div class="city-box" style="margin-bottom: 30px;">
+                    <span style="font-size: 1.25rem; font-weight: 900; color: var(--accent); display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <i class="fas fa-location-dot"></i> 台中地區
+                    </span>
+                    <div class="districts">
+                        <span class="dist-tag">東區</span><span class="dist-tag">太平區</span><span class="dist-tag">北屯區</span>
+                        <span class="dist-tag">西屯區</span><span class="dist-tag">南屯區</span><span class="dist-tag">大里區</span>
+                    </div>
+                </div>
+
+                <div class="city-box" style="margin-bottom: 30px;">
+                    <span style="font-size: 1.25rem; font-weight: 900; color: var(--accent); display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <i class="fas fa-car-side"></i> 彰化/南投地區
+                    </span>
+                    <div class="districts">
+                        <span class="dist-tag">彰化市</span><span class="dist-tag">員林市</span><span class="dist-tag">鹿港鎮</span>
+                        <span class="dist-tag">草屯鎮</span><span class="dist-tag">南投市</span><span class="dist-tag">竹山鎮</span>
+                    </div>
+                </div>
+
+                <a href="tel:0963696032" class="btn-call">立即撥打：0963-696-032</a>
+            </div>
+            
+            <div class="map-wrapper">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3640.923483984595!2d120.6908323!3d24.1358054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693d207dfec21d%3A0xc33e545802f066b5!2zNDA05Y-w5Lit5biC5p2x5Y2A5bu65oiQ6LevMzQ2t6Z7Ym_!5e0!3m2!1szh-TW!2stw!4v1700000000000" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <div class="stat-grid">
+            <div class="stat-item reveal">
+                <i class="fas fa-house-chimney-crack"></i><br>
+                <h3 class="counter" data-target="500">0</h3><span>+</span>
+                <p>成功漏水修復案例</p>
+            </div>
+            <div class="stat-item reveal" style="transition-delay: 0.1s;">
+                <i class="fas fa-smile"></i><br>
+                <h3 class="counter" data-target="100">0</h3><span>%</span>
+                <p>專業責任保固承諾</p>
+            </div>
+            <div class="stat-item reveal" style="transition-delay: 0.2s;">
+                <i class="fas fa-calendar-check"></i><br>
+                <h3 class="counter" data-target="24">0</h3><span>h</span>
+                <p>快速回覆安排勘查</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <h2 style="font-size: 1.6rem; color: var(--accent); margin-bottom: 10px;">錦德防水工程</h2>
+        <p>地址：台中市東區建成路346巷7號</p>
+        <p>電話：0963-696-032</p>
+        <p style="opacity: 0.5; font-size: 0.85rem; margin-top: 20px;">© 2026 錦德防水 | 統編 80081612</p>
+    </footer>
+
+    <script>
+        // 1. 進場揭幕動畫
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            reveals.forEach(el => {
+                var windowHeight = window.innerHeight;
+                var elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) { el.classList.add("active"); }
+            });
+        }
+
+        // 2. 數字跑分動畫
+        function countUp() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        const target = +counter.getAttribute('data-target');
+                        let count = 0;
+                        const inc = target / 40; 
+                        const update = () => {
+                            if (count < target) {
+                                count += inc;
+                                counter.innerText = Math.ceil(count);
+                                setTimeout(update, 20);
+                            } else { counter.innerText = target; }
+                        };
+                        update();
+                        observer.unobserve(counter);
+                    }
+                }, { threshold: 0.5 });
+                observer.observe(counter);
+            });
+        }
+
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", () => {
+            reveal();
+            countUp();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>實績對比 | 錦德防水工程</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0F172A; 
+            --accent: #B8860B;  
+            --bg-light: #F1F5F9;
+            --white: #FFFFFF;
+        }
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body { 
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif; 
+            margin: 0; background: var(--bg-light); color: #334155; 
+            line-height: 1.6; overflow-x: hidden;
+        }
+
+        /* 導覽列修復 */
+        .navbar {
+            background: white; min-height: 100px; display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 5%; position: sticky; top: 0; z-index: 2000; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .logo { font-size: 1.6rem; font-weight: 900; color: var(--primary); text-decoration: none; flex-shrink: 0; }
+        .logo span { color: var(--accent); }
+        
+        .nav-links { display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+        .nav-links a { 
+            text-decoration: none; color: var(--primary); font-weight: bold; 
+            margin: 5px 0 5px 20px; transition: 0.3s; text-align: center; font-size: 0.9rem;
+            white-space: nowrap;
+        }
+        .nav-links a:hover { color: var(--accent); }
+        
+        .btn-call-nav {
+            background: var(--accent); color: white !important;
+            padding: 8px 18px; border-radius: 50px; 
+            box-shadow: 0 4px 10px rgba(184, 134, 11, 0.3);
+        }
+
+        /* 標題區 */
+        .page-header {
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), 
+                        url('https://i.ibb.co/XHBnKzw/D7-D688-BE-F480-4944-8899-FE005-B550-F28.jpg') center/cover;
+            padding: 80px 5%; text-align: center; color: white;
+        }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 10px; letter-spacing: 2px; }
+
+        .section { padding: 60px 5%; max-width: 1200px; margin: 0 auto; }
+
+        /* 案例卡片 */
+        .case-card { 
+            background: white; border-radius: 20px; overflow: hidden; margin-bottom: 80px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+        }
+        .case-header { padding: 25px 35px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .case-header h3 { margin: 0; color: var(--primary); font-size: 1.4rem; }
+        .case-tag-period { background: var(--bg-light); padding: 5px 15px; border-radius: 50px; font-size: 0.85rem; color: var(--accent); font-weight: bold; }
+
+        .ba-wrapper { display: grid; grid-template-columns: 1.2fr 1fr; }
+        .ba-container { position: relative; width: 100%; height: 450px; overflow: hidden; background: #eee; }
+        .ba-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; }
+        .after { z-index: 2; width: 50%; border-right: 4px solid white; box-shadow: 10px 0 20px rgba(0,0,0,0.2); }
+        
+        /* 滑桿 */
+        .ba-slider { 
+            position: absolute; -webkit-appearance: none; width: 100%; height: 100%; 
+            background: transparent; z-index: 3; cursor: ew-resize; outline: none; touch-action: none;
+        }
+        .ba-slider::-webkit-slider-thumb { 
+            -webkit-appearance: none; width: 40px; height: 40px; 
+            background: var(--accent); border: 3px solid white; border-radius: 50%; cursor: pointer; 
+        }
+
+        .case-details { padding: 40px; background: #fdfdfd; }
+        .case-details h4 { color: var(--accent); margin-top: 0; border-left: 5px solid var(--accent); padding-left: 15px; font-size: 1.2rem; }
+        .tag-group { margin-top: 20px; }
+        .case-tag { 
+            display: inline-block; background: #fff; border: 1px solid #ddd; 
+            padding: 6px 14px; border-radius: 8px; margin: 0 5px 5px 0; font-size: 0.85rem; 
+        }
+
+        /* 滾動動畫 */
+        .reveal { opacity: 0; transition: all 1s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        footer { background: var(--primary); color: white; padding: 60px 5%; text-align: center; }
+
+        /* 手機版適配方案 */
+        @media (max-width: 768px) {
+            .navbar { height: auto; flex-direction: column; padding: 15px; }
+            .nav-links { justify-content: center; margin-top: 10px; }
+            .nav-links a { margin: 5px 10px; font-size: 0.8rem; }
+            .ba-wrapper { grid-template-columns: 1fr; }
+            .ba-container { height: 300px; }
+            .case-header h3 { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="index.html" class="logo">錦德<span>防水工程</span></a>
+        <nav class="nav-links">
+            <a href="index.html">首頁 HOME</a>
+            <a href="about.html">關於我們 ABOUT</a>
+            <a href="services.html">服務項目 SERVICE</a>
+            <a href="cases.html" style="color:var(--accent)">實績對比 CASES</a>
+            <a href="areas.html">服務區域 AREA</a>
+            <a href="contact.html" class="btn-call-nav">立即預約</a>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <h1>專業修復案例</h1>
+        <p>Before & After 職人工法實錄</p>
+    </section>
+
+    <section class="section">
+        <div class="case-card reveal">
+            <div class="case-header">
+                <h3>台中 | 老屋外牆防水翻新</h3>
+                <span class="case-tag-period">施工期：10天</span>
+            </div>
+            <div class="ba-wrapper">
+                <div class="ba-container">
+                    <div class="ba-image" style="background-image: url('https://i.ibb.co/SDB35RjJ/IMG-1925.jpg');"></div>
+                    <div class="ba-image after" id="after1" style="background-image: url('https://i.ibb.co/gbHcxvT3/IMG-2063.jpg');"></div>
+                    <input type="range" min="0" max="100" value="50" class="ba-slider" oninput="document.getElementById('after1').style.width = this.value + '%'">
+                </div>
+                <div class="case-details">
+                    <h4>工程診斷</h4>
+                    <p>外牆結構裂縫導致滲漏。錦德採用高空吊車針對裂縫進行 V-Cut 切割補強，並施作耐候彈性面漆。</p>
+                    <div class="tag-group">
+                        <span class="case-tag">高空作業</span><span class="case-tag">V-Cut 補強</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="case-card reveal">
+            <div class="case-header">
+                <h3>南投 | PU頂樓隔熱防水工程</h3>
+                <span class="case-tag-period">施工期：7天</span>
+            </div>
+            <div class="ba-wrapper">
+                <div class="ba-container">
+                    <div class="ba-image" style="background-image: url('https://i.ibb.co/XHBnKzw/D7-D688-BE-F480-4944-8899-FE005-B550-F28.jpg');"></div>
+                    <div class="ba-image after" id="after2" style="background-image: url('https://i.ibb.co/XHBnKzw/D7-D688-BE-F480-4944-8899-FE005-B550-F28.jpg');"></div>
+                    <input type="range" min="0" max="100" value="50" class="ba-slider" oninput="document.getElementById('after2').style.width = this.value + '%'">
+                </div>
+                <div class="case-details">
+                    <h4>工程診斷</h4>
+                    <p>舊防水層失效清創，全場鋪設抗裂網。使用高反射斷熱漆，止漏同時降低室內溫度。</p>
+                    <div class="tag-group">
+                        <span class="case-tag">PU</span><span class="case-tag">隔熱面漆</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="case-card reveal">
+            <div class="case-header">
+                <h3>彰化 | 室內滲水高壓止漏</h3>
+                <span class="case-tag-period">施工期：3天</span>
+            </div>
+            <div class="ba-wrapper">
+                <div class="ba-container">
+                    <div class="ba-image" style="background-image: url('https://i.ibb.co/M57Ln8cs/IMG-5270.jpg');"">;"></div>
+                    <div class="ba-image after" id="after3" style="background-image: url('https://i.ibb.co/M57Ln8cs/IMG-5270.jpg');"></div>
+                    <input type="range" min="0" max="100" value="50" class="ba-slider" oninput="document.getElementById('after3').style.width = this.value + '%'">
+                </div>
+                <div class="case-details">
+                    <h4>工程診斷</h4>
+                    <p>針對結構裂縫，採用專業高壓灌注 PU 藥劑封堵水源。這張照片展現了錦德最核心的止漏技術。</p>
+                    <div class="tag-group">
+                        <span class="case-tag">高壓灌注</span><span class="case-tag">結構修復</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>錦德防水工程 | 統一編號：80081612</p>
+        <p>台中 · 彰化 · 南投 專業服務</p>
+        <p>© 2026 錦德防水 | 誠信 · 專業 · 在地保固</p>
+    </footer>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", reveal);
+        reveal();
+    </script>
+</body>
+</html>
